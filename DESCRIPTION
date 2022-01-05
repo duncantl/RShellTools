@@ -1,0 +1,6 @@
+Package: RShellTools
+Title: Call and process output from shell tools
+Description: See the title
+Version: 0-1.0
+Maintainer: Duncan <duncan@r-project.org>
+License: BSD
