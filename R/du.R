@@ -28,7 +28,7 @@ function(x, units = NA)
 
     unit = gsub(".*([KMGT])$", "\\1", sz)
     sz = as.numeric(gsub("([KMGT])$", "", sz))
-    mul = 1024^c(K = 1, M = 2, G = 3, T = 4)
+    mul = 1024^c(B = 0, K = 1, M = 2, G = 3, T = 4)
     bytes = sz*mul[unit]
 
     bytes[is.na(bytes)] = sz[is.na(bytes)] # 0
@@ -41,4 +41,10 @@ function(x, units = NA)
     structure(ans[order(ans$bytes, decreasing = TRUE),], class = c("du.output", "data.frame"))
 }
 
-        
+cvtTo =
+function(vals, to, from = "B")
+{
+    mul = 1024^c(B = 0, K = 1, M = 2, G = 3, T = 4)
+    vals*mul[from]/mul[to]
+}
+
