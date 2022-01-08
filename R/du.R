@@ -1,16 +1,15 @@
 du =
-function(dir = ".", recursive = FALSE, flags = "-hs")
+function(dir = ".", recursive = FALSE, flags = "-hs", units = "B")
 {
     dir = path.expand(dir)
 
-
     if(recursive) {
         dirs = system(sprintf('find %s -type d -exec du -hs *', shQuote(dir)), intern  = TRUE)
-        
+        #XXXX finish
     }
     
     ll = system(sprintf("du %s %s/*", flags, dir), intern = TRUE)
-    readDuOutput(ll)
+    readDuOutput(ll, units)
 }
 
 readDuOutput =
