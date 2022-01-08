@@ -1,1 +1,6 @@
 export(du, bigfiles)
+
+export(cmpDir)
+export(cvtTo)
+
+export(downloadDups)
