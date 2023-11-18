@@ -39,7 +39,8 @@ function(dir = "~/Downloads", files = list.files(dir, full = TRUE), info = file.
     info = info[!grepl(ignore, rownames(info)),]
     bySz = split(info, list(info$size, file.ext(rownames(info))))
     w = sapply(bySz, nrow) > 1
-    sapply(rev(bySz[w]), idDups)
+    o = sapply(rev(bySz[w]), idDups)
+    o[sapply(o, length) > 0]
 }
 
 
@@ -51,7 +52,7 @@ function(info, files = rownames(info)    )
 {
     ext = unique(file.ext(files))
     fl = sub(paste0(".", ext), "", basename(files))
-    pre = getCommonPrefix(fl)
+    pre = Rlibstree::getCommonPrefix(fl)
     if(length(pre) == 0)
         return(character())
     if(grepl("[-(][0-9]*$", pre))
